@@ -177,7 +177,7 @@ Sinta-se à vontade para contribuir enviando pull requests ou criando issues par
 
 ## Licença
 
-FluxCSS é disponibilizado sob uma **licença personalizada** e é oferecido **"no estado em que se encontra"**, sem garantias de qualquer tipo.
+FluxCSS é disponibilizado sob uma [**licença personalizada**](./license) e é oferecido **"no estado em que se encontra"**, sem garantias de qualquer tipo.
 
 Você pode usá-lo em projetos **pessoais ou não comerciais**.
 
