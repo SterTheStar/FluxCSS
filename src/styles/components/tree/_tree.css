@@ -1,0 +1,200 @@
+.tree {
+  width: 100%;
+  color: var(--color-text-primary);
+}
+
+.tree__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tree__item {
+  position: relative;
+}
+
+.tree__branch {
+  padding-left: var(--spacing-lg);
+}
+
+.tree__node {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+.tree__node:hover {
+  background: var(--color-bg-tertiary);
+}
+
+.tree__node--selected {
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent);
+}
+
+.tree__toggle {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+  transition: transform var(--transition-fast);
+  color: var(--color-text-muted);
+}
+
+.tree__item--expanded > .tree__node .tree__toggle {
+  transform: rotate(90deg);
+}
+
+.tree__icon {
+  width: 20px;
+  height: 20px;
+  margin-right: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+.tree__label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Linhas de conexão */
+.tree--connected .tree__branch {
+  position: relative;
+}
+
+.tree--connected .tree__branch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(var(--spacing-lg) / 2);
+  bottom: 0;
+  width: 1px;
+  background: var(--color-bg-tertiary);
+}
+
+.tree--connected .tree__node::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--spacing-lg) / 2);
+  width: calc(var(--spacing-lg) / 2);
+  height: 1px;
+  background: var(--color-bg-tertiary);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Checkbox */
+.tree__checkbox {
+  margin-right: var(--spacing-sm);
+}
+
+.tree__checkbox-input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-bg-tertiary);
+  border-radius: var(--border-radius-sm);
+  background: var(--color-bg-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.tree__checkbox-input:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.tree__checkbox-input:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.tree__checkbox-input:indeterminate {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.tree__checkbox-input:indeterminate::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 3px;
+  width: 8px;
+  height: 2px;
+  background: white;
+}
+
+/* Estados de carregamento */
+.tree__node--loading .tree__icon {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* Ações */
+.tree__actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+
+.tree__node:hover .tree__actions {
+  opacity: 1;
+}
+
+.tree__action {
+  padding: var(--spacing-xs);
+  color: var(--color-text-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-fast);
+}
+
+.tree__action:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+}
+
+/* Drag and Drop */
+.tree__node--dragging {
+  opacity: 0.5;
+}
+
+.tree__node--drop-target {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed var(--color-accent);
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .tree__actions {
+    opacity: 1;
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+  }
+}

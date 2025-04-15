@@ -1,0 +1,255 @@
+/* Stepper Component */
+:root {
+  --stepper-connector-size: 2px;
+  --stepper-size: 32px;
+  --stepper-icon-size: 20px;
+  --stepper-spacing: var(--spacing-lg);
+  --stepper-content-spacing: var(--spacing-md);
+  --stepper-color: var(--color-accent);
+  --stepper-color-inactive: var(--color-text-muted);
+  --stepper-bg: var(--color-bg-tertiary);
+  --stepper-transition: var(--transition-normal);
+}
+
+/* Base */
+.stepper {
+  display: flex;
+  gap: var(--stepper-spacing);
+}
+
+.stepper--vertical {
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Step */
+.stepper__step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  gap: var(--stepper-content-spacing);
+}
+
+.stepper--vertical .stepper__step {
+  flex-direction: column;
+  padding-left: calc(var(--stepper-size) / 2);
+  padding-bottom: var(--stepper-spacing);
+}
+
+/* Step Indicator */
+.stepper__indicator {
+  width: var(--stepper-size);
+  height: var(--stepper-size);
+  flex-shrink: 0;
+  border-radius: var(--border-radius-full);
+  background: var(--stepper-bg);
+  color: var(--stepper-color-inactive);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  transition: var(--stepper-transition);
+  position: relative;
+  z-index: 1;
+}
+
+.stepper__indicator-icon {
+  width: var(--stepper-icon-size);
+  height: var(--stepper-icon-size);
+}
+
+/* Step Content */
+.stepper__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepper__title {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stepper__description {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Connector Line */
+.stepper__step::before {
+  content: '';
+  position: absolute;
+  background: var(--stepper-bg);
+  transition: var(--stepper-transition);
+}
+
+/* Horizontal Connector */
+.stepper__step:not(:last-child)::before {
+  height: var(--stepper-connector-size);
+  top: calc(var(--stepper-size) / 2 - var(--stepper-connector-size) / 2);
+  left: calc(var(--stepper-size) + var(--stepper-content-spacing));
+  right: calc(var(--stepper-content-spacing) * -1);
+}
+
+/* Vertical Connector */
+.stepper--vertical .stepper__step:not(:last-child)::before {
+  width: var(--stepper-connector-size);
+  top: var(--stepper-size);
+  bottom: calc(var(--stepper-spacing) * -1);
+  left: calc(var(--stepper-size) / 2 - var(--stepper-connector-size) / 2);
+  height: auto;
+}
+
+/* States */
+.stepper__step--completed .stepper__indicator {
+  background: var(--stepper-color);
+  color: var(--color-bg-primary);
+}
+
+.stepper__step--completed::before {
+  background: var(--stepper-color);
+}
+
+.stepper__step--active .stepper__indicator {
+  background: var(--stepper-color);
+  color: var(--color-bg-primary);
+  box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.2);
+}
+
+.stepper__step--error .stepper__indicator {
+  background: var(--color-error);
+  color: var(--color-bg-primary);
+}
+
+.stepper__step--error::before {
+  background: var(--color-error);
+}
+
+.stepper__step--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Sizes */
+.stepper--sm {
+  --stepper-size: 24px;
+  --stepper-icon-size: 14px;
+  --stepper-spacing: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.stepper--lg {
+  --stepper-size: 40px;
+  --stepper-icon-size: 24px;
+  --stepper-spacing: var(--spacing-xl);
+}
+
+/* Variants */
+.stepper--alt .stepper__indicator {
+  background: transparent;
+  border: 2px solid var(--stepper-bg);
+}
+
+.stepper--alt .stepper__step--completed .stepper__indicator,
+.stepper--alt .stepper__step--active .stepper__indicator {
+  border-color: var(--stepper-color);
+  background: transparent;
+  color: var(--stepper-color);
+}
+
+.stepper--minimal .stepper__indicator {
+  --stepper-size: 24px;
+  background: transparent;
+}
+
+.stepper--minimal .stepper__step--completed .stepper__indicator,
+.stepper--minimal .stepper__step--active .stepper__indicator {
+  background: transparent;
+  color: var(--stepper-color);
+}
+
+.stepper--numbered .stepper__indicator {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+/* With Background */
+.stepper--filled .stepper__content {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-bg-tertiary);
+}
+
+.stepper--glass .stepper__content {
+  background: rgba(var(--color-bg-secondary-rgb), 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+}
+
+/* Interactive */
+.stepper--interactive .stepper__step {
+  cursor: pointer;
+}
+
+.stepper--interactive .stepper__step:hover .stepper__indicator {
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes stepper-pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.stepper--animated .stepper__indicator {
+  animation: stepper-pop 0.3s var(--animation-bounce);
+}
+
+.stepper--animated .stepper__step::before {
+  transition: background 0.3s var(--animation-bounce);
+}
+
+/* Progress Variant */
+.stepper--progress .stepper__indicator::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: inherit;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform 0.3s var(--animation-bounce);
+}
+
+.stepper--progress .stepper__step--completed .stepper__indicator::before,
+.stepper--progress .stepper__step--active .stepper__indicator::before {
+  transform: scale(1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .stepper:not(.stepper--vertical) {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .stepper:not(.stepper--vertical) .stepper__step {
+    flex-direction: column;
+    padding-left: calc(var(--stepper-size) / 2);
+    padding-bottom: var(--stepper-spacing);
+  }
+
+  .stepper:not(.stepper--vertical) .stepper__step:not(:last-child)::before {
+    width: var(--stepper-connector-size);
+    top: var(--stepper-size);
+    bottom: calc(var(--stepper-spacing) * -1);
+    left: calc(var(--stepper-size) / 2 - var(--stepper-connector-size) / 2);
+    height: auto;
+  }
+
+  .stepper--responsive .stepper__content {
+    padding: var(--spacing-sm);
+  }
+}

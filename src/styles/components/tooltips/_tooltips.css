@@ -1,0 +1,92 @@
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-fast);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+
+[data-tooltip]::after {
+  content: '';
+  border: 6px solid transparent;
+  border-top-color: var(--color-bg-tertiary);
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Posicionamento */
+[data-tooltip-position="right"]::before {
+  bottom: 50%;
+  left: 100%;
+  transform: translateX(8px) translateY(50%);
+}
+
+[data-tooltip-position="right"]::after {
+  bottom: 50%;
+  left: 100%;
+  transform: translateX(8px) translateY(50%);
+  border-top-color: transparent;
+  border-right-color: var(--color-bg-tertiary);
+}
+
+[data-tooltip-position="right"]:hover::before,
+[data-tooltip-position="right"]:hover::after {
+  transform: translateX(16px) translateY(50%);
+}
+
+[data-tooltip-position="left"]::before {
+  bottom: 50%;
+  right: 100%;
+  left: auto;
+  transform: translateX(-8px) translateY(50%);
+}
+
+[data-tooltip-position="left"]::after {
+  bottom: 50%;
+  right: 100%;
+  left: auto;
+  transform: translateX(-8px) translateY(50%);
+  border-top-color: transparent;
+  border-left-color: var(--color-bg-tertiary);
+}
+
+[data-tooltip-position="left"]:hover::before,
+[data-tooltip-position="left"]:hover::after {
+  transform: translateX(-16px) translateY(50%);
+}
+
+/* Tamanhos */
+[data-tooltip-size="large"]::before {
+  width: 300px;
+  white-space: normal;
+  text-align: center;
+  padding: var(--spacing-sm);
+}

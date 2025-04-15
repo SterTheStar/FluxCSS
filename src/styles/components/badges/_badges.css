@@ -1,0 +1,53 @@
+/* Estilos base para badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: var(--border-radius-sm);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+/* Variantes */
+.badge--primary {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.badge--success {
+  background: #4caf50;
+  color: white;
+}
+
+.badge--warning {
+  background: #ff9800;
+  color: black;
+}
+
+.badge--error {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* Estilos */
+.badge--outline {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+
+.badge--rounded {
+  border-radius: 9999px;
+}
+
+/* Com ícone */
+.badge--icon {
+  gap: var(--spacing-xs);
+}
+
+.badge--icon svg {
+  width: 0.875em;
+  height: 0.875em;
+}

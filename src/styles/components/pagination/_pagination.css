@@ -1,0 +1,86 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  justify-content: center; /* Centraliza os itens */
+}
+
+.pagination__item {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-sm);
+  border-radius: 4px; /* Menos arredondada */
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  background: var(--color-bg-secondary); /* Adicionando fundo para itens */
+  border: 1px solid var(--color-bg-tertiary); /* Adicionando borda */
+  transition: all 0.3s ease-in-out;
+  user-select: none;
+}
+
+.pagination__item:hover:not(.pagination__item--disabled) {
+  background: var(--color-accent-light);
+  color: var(--color-text-primary);
+  transform: translateY(-2px); /* Efeito de elevação */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar o hover */
+}
+
+.pagination__item--active {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Sombra para o item ativo */
+}
+
+.pagination__item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-bg-tertiary); /* Fundo mais suave para desabilitado */
+}
+
+/* Variantes */
+.pagination--rounded .pagination__item {
+  border-radius: 8px; /* Um pouco mais arredondado se necessário */
+}
+
+.pagination--bordered .pagination__item {
+  border: 2px solid var(--color-bg-tertiary); /* Borda mais grossa para itens com borda */
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .pagination--responsive .pagination__item:not(.pagination__item--active):not(.pagination__item--prev):not(.pagination__item--next) {
+    display: none;
+  }
+  
+  .pagination--responsive .pagination__item--dots {
+    display: flex;
+  }
+}
+
+/* Com ícones */
+.pagination__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.pagination__item:hover .pagination__icon {
+  transform: scale(1.2); /* Aumenta o ícone quando o item é hover */
+}
+
+/* Tamanhos */
+.pagination--sm .pagination__item {
+  min-width: 2rem;
+  height: 2rem;
+  font-size: var(--font-size-sm);
+}
+
+.pagination--lg .pagination__item {
+  min-width: 3rem;
+  height: 3rem;
+  font-size: var(--font-size-lg);
+}

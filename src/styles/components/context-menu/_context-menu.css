@@ -1,0 +1,92 @@
+.context-menu {
+  position: fixed;
+  min-width: 160px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-xs) 0;
+  z-index: 1100;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transform-origin: top left;
+  transition: all var(--transition-fast);
+}
+
+.context-menu.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.context-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+.context-menu__item:hover {
+  background: var(--color-bg-tertiary);
+}
+
+.context-menu__item-icon {
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.7;
+}
+
+.context-menu__divider {
+  height: 1px;
+  background: var(--color-bg-tertiary);
+  margin: var(--spacing-xs) 0;
+}
+
+/* Estados */
+.context-menu__item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.context-menu__item--disabled:hover {
+  background: none;
+}
+
+.context-menu__item--danger {
+  color: #ff4d4d;
+}
+
+.context-menu__item--danger:hover {
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* Submenu */
+.context-menu__item--has-submenu {
+  position: relative;
+}
+
+.context-menu__item--has-submenu::after {
+  content: '›';
+  margin-left: auto;
+  font-size: 1.2em;
+}
+
+.context-menu__submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all var(--transition-fast);
+}
+
+.context-menu__item--has-submenu:hover .context-menu__submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}

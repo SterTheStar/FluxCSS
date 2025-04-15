@@ -1,0 +1,209 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform var(--transition-normal) var(--animation-smooth);
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  position: relative;
+}
+
+.carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Controles de navegação */
+.carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-md);
+  pointer-events: none;
+}
+
+.carousel__button {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  pointer-events: auto;
+}
+
+.carousel__button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.carousel__button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Indicadores */
+.carousel__indicators {
+  position: absolute;
+  bottom: var(--spacing-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.carousel__indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition-fast);
+}
+
+.carousel__indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.carousel__indicator--active {
+  background: var(--color-accent);
+  transform: scale(1.2);
+}
+
+/* Thumbnails */
+.carousel__thumbnails {
+  display: flex;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel__thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+  border: 2px solid transparent;
+}
+
+.carousel__thumbnail:hover {
+  opacity: 0.8;
+}
+
+.carousel__thumbnail--active {
+  opacity: 1;
+  border-color: var(--color-accent);
+}
+
+.carousel__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Efeitos de transição */
+.carousel--fade .carousel__track {
+  transition: opacity var(--transition-normal);
+}
+
+.carousel--fade .carousel__slide {
+  position: absolute;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.carousel--fade .carousel__slide--active {
+  opacity: 1;
+}
+
+/* Zoom */
+.carousel__zoom {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.carousel__zoom:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .carousel__nav {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .carousel__button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .carousel__thumbnails {
+    padding: var(--spacing-xs);
+  }
+
+  .carousel__thumbnail {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Gestos de toque */
+.carousel__track {
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Estado de carregamento */
+.carousel__slide--loading {
+  background: var(--color-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+/* Legenda */
+.carousel__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: var(--color-text-primary);
+}

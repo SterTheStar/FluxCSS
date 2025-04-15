@@ -1,0 +1,84 @@
+.alert {
+  position: relative;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  background: var(--color-bg-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.alert__title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.alert__message {
+  color: var(--color-text-secondary);
+}
+
+.alert__close {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: var(--transition-fast);
+}
+
+.alert__close:hover {
+  opacity: 1;
+}
+
+/* Variantes */
+.alert--info {
+  border-left-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg-secondary));
+}
+
+.alert--success {
+  border-left-color: #4caf50;
+  background: color-mix(in srgb, #4caf50 10%, var(--color-bg-secondary));
+}
+
+.alert--warning {
+  border-left-color: #ff9800;
+  background: color-mix(in srgb, #ff9800 10%, var(--color-bg-secondary));
+}
+
+.alert--error {
+  border-left-color: #ff4d4d;
+  background: color-mix(in srgb, #ff4d4d 10%, var(--color-bg-secondary));
+}
+
+/* Com ícone */
+.alert--icon {
+  padding-left: calc(var(--spacing-md) * 2 + 24px);
+}
+
+.alert--icon::before {
+  content: '';
+  position: absolute;
+  left: var(--spacing-md);
+  top: var(--spacing-md);
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.alert--icon.alert--info::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23007bff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>');
+  }
+  
+  .alert--icon.alert--success::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%234caf50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm-1.2 17.2l-5-5 1.4-1.4 3.6 3.6 6.6-6.6L19 9.2z"/></svg>');
+  }
+  
+  .alert--icon.alert--warning::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff9800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>');
+  }
+  
+  .alert--icon.alert--error::before {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ff4d4d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0a12 12 0 1012 12A12.014 12.014 0 0012 0zm5 15.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12z"/></svg>');
+  }
+  

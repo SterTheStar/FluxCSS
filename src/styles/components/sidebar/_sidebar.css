@@ -1,0 +1,302 @@
+/* ======================
+   Estrutura principal
+====================== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  background: rgba(var(--color-bg-secondary-rgb), 0.95);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(var(--color-bg-tertiary-rgb), 0.5);
+  z-index: var(--z-sidebar);
+  transform: translateX(-100%);
+  transition: all var(--transition-normal) var(--animation-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.is-active {
+  transform: translateX(0);
+  box-shadow: var(--shadow-lg);
+  animation: slideIn var(--transition-normal) var(--animation-smooth);
+}
+
+/* ======================
+   Header
+====================== */
+.sidebar__header {
+  height: 64px;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(var(--color-bg-tertiary-rgb), 0.5);
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 3;
+}
+
+.sidebar__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.sidebar__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--border-radius-full);
+  transition: all var(--transition-fast);
+}
+
+.sidebar__close:hover {
+  background: rgba(var(--color-bg-tertiary-rgb), 0.5);
+  color: var(--color-text-primary);
+  transform: rotate(90deg);
+}
+
+/* ======================
+   Campo de busca
+====================== */
+.sidebar__search {
+  padding: var(--spacing-md);
+  position: sticky;
+  top: 64px;
+  z-index: 2;
+  background: transparent;
+  border-bottom: 1px solid rgba(var(--color-bg-tertiary-rgb), 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sidebar__search-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(var(--color-bg-tertiary-rgb), 0.1); /* Fundo leve com opacidade */
+  border: 2px solid rgba(var(--color-bg-tertiary-rgb), 0.5); /* Borda leve */
+  border-radius: var(--border-radius-lg);
+  padding: 0.5rem 1rem;
+  width: 100%;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.sidebar__search-wrapper:focus-within {
+  border-color: var(--color-accent);
+  background: rgba(var(--color-bg-tertiary-rgb), 0.2); /* Fundo mais visível ao focar */
+}
+
+.sidebar__search-icon {
+  margin-left: 0.5rem;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.sidebar__search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  width: 100%;
+  padding-right: 2rem;
+}
+
+
+/* ======================
+   Conteúdo principal
+====================== */
+.sidebar__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md) var(--spacing-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg-tertiary) transparent;
+}
+
+.sidebar__content::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar__content::-webkit-scrollbar-thumb {
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-full);
+}
+.sidebar__content:hover::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-accent-rgb), 0.3);
+}
+
+/* ======================
+   Seções e links
+====================== */
+.sidebar__section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.sidebar__section-divider {
+  height: 1px;
+  background: rgba(var(--color-bg-tertiary-rgb), 0.3);
+  margin: var(--spacing-sm) 0;
+}
+
+.sidebar__section-header {
+  padding: var(--spacing-xs) var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+.sidebar__section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--border-radius-lg);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+  position: relative;
+  margin: 2px 0;
+}
+
+.sidebar__link:hover {
+  background: rgba(var(--color-bg-tertiary-rgb), 0.5);
+  color: var(--color-text-primary);
+  transform: translateX(4px);
+}
+
+.sidebar__link.is-active {
+  background: rgba(var(--color-accent-rgb), 0.15);
+  color: var(--color-accent);
+}
+
+.sidebar__link.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 16px;
+  background: var(--color-accent);
+  border-radius: 0 var(--border-radius-full) var(--border-radius-full) 0;
+}
+
+.sidebar__link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.sidebar__link:hover svg {
+  transform: scale(1.1);
+}
+
+.sidebar__link .badge {
+  margin-left: auto;
+  transition: all var(--transition-fast);
+}
+.sidebar__link:hover .badge {
+  transform: scale(1.1) translateX(-4px);
+}
+
+/* ======================
+   Rodapé
+====================== */
+.sidebar__footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid rgba(var(--color-bg-tertiary-rgb), 0.5);
+  background: inherit;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+.sidebar__theme-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+/* ======================
+   Overlay
+====================== */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: calc(var(--z-sidebar) - 1);
+}
+
+.sidebar.is-active + .sidebar-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ======================
+   Responsividade
+====================== */
+@media (min-width: 1024px) {
+  .sidebar {
+    transform: none;
+  }
+
+  .main {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+  }
+
+  .sidebar__close,
+  .sidebar-overlay {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sidebar {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .sidebar__search,
+  .sidebar__footer {
+    background: rgba(var(--color-bg-secondary-rgb), 0.95);
+  }
+}
+
+/* ======================
+   Animações
+====================== */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

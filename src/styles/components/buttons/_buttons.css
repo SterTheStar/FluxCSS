@@ -1,0 +1,235 @@
+/* Estilos base do botão */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    min-height: 40px;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover:not(:disabled) {
+    background: var(--color-bg-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.2);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Variantes */
+.btn--primary {
+    background: var(--color-accent);
+    color: var(--color-bg-primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+    background: var(--color-accent);
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.btn--secondary {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-bg-tertiary);
+}
+
+.btn--secondary:hover:not(:disabled) {
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-text-muted);
+}
+
+.btn--accent {
+    background: linear-gradient(45deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, white));
+    color: var(--color-bg-primary);
+}
+
+.btn--accent:hover:not(:disabled) {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.btn--outline {
+    background: transparent;
+    border: 1px solid var(--color-bg-tertiary);
+}
+
+.btn--outline:hover:not(:disabled) {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: rgba(var(--color-accent-rgb), 0.1);
+}
+
+.btn--ghost {
+    background: transparent;
+    border-color: transparent;
+    color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover:not(:disabled) {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+}
+
+.btn--danger {
+    background: var(--color-error);
+    color: var(--color-bg-primary);
+}
+
+.btn--danger:hover:not(:disabled) {
+    background: var(--color-error);
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px rgba(var(--color-error-rgb), 0.3);
+}
+
+/* Tamanhos */
+.btn--sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    min-height: 32px;
+    font-size: calc(var(--font-size-sm) - 1px);
+}
+
+.btn--lg {
+    padding: var(--spacing-md) var(--spacing-xl);
+    min-height: 48px;
+    font-size: var(--font-size-base);
+}
+
+/* Botão com ícone */
+.btn--icon {
+    padding: var(--spacing-sm);
+    aspect-ratio: 1;
+    min-height: unset;
+}
+
+.btn--icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Estado de loading */
+.btn--loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.btn--loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: button-loading 0.75s infinite linear;
+}
+
+@keyframes button-loading {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Grupo de botões */
+.btn-group {
+    display: inline-flex;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.btn-group .btn:not(:last-child) {
+    border-right-width: 0;
+}
+
+.btn-group .btn:first-child {
+    border-top-left-radius: var(--border-radius-sm);
+    border-bottom-left-radius: var(--border-radius-sm);
+}
+
+.btn-group .btn:last-child {
+    border-top-right-radius: var(--border-radius-sm);
+    border-bottom-right-radius: var(--border-radius-sm);
+}
+
+/* Efeito Ripple */
+.btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+}
+
+/* Botão com badge */
+.btn-badge {
+    position: relative;
+}
+
+.btn-badge::before {
+    content: attr(data-count);
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--color-error);
+    border-radius: var(--border-radius-full);
+    color: var(--color-bg-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Botão Block */
+.btn--block {
+    display: flex;
+    width: 100%;
+}

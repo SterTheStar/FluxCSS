@@ -1,0 +1,116 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-normal);
+}
+
+.modal-backdrop.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal container */
+.modal {
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: translateY(-20px);
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-backdrop.is-active .modal {
+  transform: translateY(0);
+}
+
+/* Header */
+.modal__header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Title */
+.modal__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Close button */
+.modal__close {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  transition: var(--transition-fast);
+}
+
+.modal__close:hover {
+  color: var(--color-text-primary);
+}
+
+/* Body */
+.modal__body {
+  padding: var(--spacing-md);
+  overflow-y: auto;
+  max-height: 60vh;
+  flex-grow: 1;
+}
+
+/* Footer */
+.modal__footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--color-bg-tertiary);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+/* Size variants */
+.modal--sm {
+  max-width: 300px;
+}
+
+.modal--lg {
+  max-width: 800px;
+}
+
+.modal--xl {
+  max-width: 1140px;
+}
+
+/* Fullscreen modal */
+.modal--fullscreen {
+  width: 100%;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  transform: none !important;
+}
+
+/* Fixes to allow scroll in fullscreen */
+.modal--fullscreen .modal__body {
+  max-height: unset;
+  overflow-y: auto;
+  flex-grow: 1;
+}

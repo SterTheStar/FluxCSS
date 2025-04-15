@@ -1,0 +1,156 @@
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  z-index: var(--z-modal);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal) var(--animation-smooth);
+}
+
+.dialog-backdrop.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dialog {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.9) translateY(-20px);
+  transition: all var(--transition-normal) var(--animation-bounce);
+}
+
+.dialog-backdrop.is-active .dialog {
+  transform: scale(1) translateY(0);
+}
+
+.dialog__header {
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-bg-tertiary);
+}
+
+.dialog__title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.dialog__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-full);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.dialog__close:hover {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.dialog__content {
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  max-height: calc(90vh - 140px); /* Header + Footer height */
+}
+
+.dialog__footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--color-bg-tertiary);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+/* Variantes de tamanho */
+.dialog--sm { max-width: 400px; }
+.dialog--lg { max-width: 800px; }
+.dialog--xl { max-width: 1140px; }
+
+/* Variante fullscreen */
+.dialog--fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Variante com scroll customizado */
+.dialog__content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg-tertiary) transparent;
+}
+
+.dialog__content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dialog__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dialog__content::-webkit-scrollbar-thumb {
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-full);
+}
+
+/* Animações para diferentes posições */
+.dialog--top {
+  margin-top: 5vh;
+  transform: translateY(-100%);
+}
+
+.dialog--bottom {
+  margin-top: auto;
+  margin-bottom: 5vh;
+  transform: translateY(100%);
+}
+
+.dialog-backdrop.is-active .dialog--top,
+.dialog-backdrop.is-active .dialog--bottom {
+  transform: translateY(0);
+}
+
+/* Estados de loading */
+.dialog--loading .dialog__content {
+  position: relative;
+  min-height: 200px;
+}
+
+.dialog--loading .dialog__content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-bg-secondary);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

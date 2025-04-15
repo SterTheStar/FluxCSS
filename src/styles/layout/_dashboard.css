@@ -1,0 +1,64 @@
+/* Dashboard Layout */
+.dashboard {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.dashboard__layout {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.dashboard__main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Grid Layout para Cards */
+.dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Layout em Duas Colunas */
+.dashboard__row {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--spacing-md);
+  height: 100%;
+}
+
+.dashboard__column {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .dashboard__row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard__main {
+    padding: var(--spacing-md);
+  }
+}

@@ -1,0 +1,270 @@
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-bg-tertiary);
+  height: 48px;
+  position: relative;
+  transition: var(--transition-normal);
+}
+
+.titlebar__title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.titlebar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Variants */
+.titlebar--primary {
+  background: var(--color-accent);
+}
+
+.titlebar--primary .titlebar__title {
+  color: var(--color-bg-primary);
+}
+
+.titlebar--glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.titlebar--bordered {
+  border: 1px solid var(--color-bg-tertiary);
+}
+
+.titlebar--shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Size variants */
+.titlebar--sm {
+  height: 40px;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.titlebar--lg {
+  height: 56px;
+  padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+/* Fixed position variants */
+.titlebar--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.titlebar--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* With icon */
+.titlebar__icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* With subtitle */
+.titlebar__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.titlebar__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Window Controls Base Styles */
+.titlebar__window-controls {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.titlebar__window-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  margin: 0 4px;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+/* MacOS Style */
+.titlebar--macos .titlebar__window-controls {
+  gap: 8px;
+  padding-left: 12px;
+  order: -1; /* Move to left side */
+}
+
+.titlebar--macos .titlebar__window-button--close {
+  background-color: #ff5f57;
+}
+
+.titlebar--macos .titlebar__window-button--minimize {
+  background-color: #febc2e;
+}
+
+.titlebar--macos .titlebar__window-button--maximize {
+  background-color: #28c840;
+}
+
+.titlebar--macos .titlebar__window-button:hover {
+  filter: brightness(0.9);
+}
+
+.titlebar--macos .titlebar__window-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.titlebar--macos .titlebar__window-button:hover::before {
+  opacity: 0.5;
+}
+
+.titlebar--macos .titlebar__window-button--close::before {
+  content: "×";
+  font-size: 14px;
+  color: #4d0000;
+}
+
+.titlebar--macos .titlebar__window-button--minimize::before {
+  content: "−";
+  font-size: 14px;
+  color: #995700;
+}
+
+.titlebar--macos .titlebar__window-button--maximize::before {
+  content: "+";
+  font-size: 14px;
+  color: #006500;
+}
+
+/* Windows Style */
+.titlebar--windows .titlebar__window-controls {
+  gap: 2px;
+  margin-left: auto; /* Move to right side */
+}
+
+.titlebar--windows .titlebar__window-button {
+  width: 45px;
+  height: 32px;
+  border-radius: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.titlebar--windows .titlebar__window-button::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.7;
+}
+
+.titlebar--windows .titlebar__window-button:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.titlebar--windows .titlebar__window-button--close:hover {
+  background-color: #e81123;
+}
+
+.titlebar--windows .titlebar__window-button--close:hover::before {
+  opacity: 1;
+}
+
+.titlebar--windows .titlebar__window-button--minimize::before {
+  content: "";
+  width: 10px;
+  height: 1px;
+  background-color: currentColor;
+  margin-top: 5px;
+}
+
+.titlebar--windows .titlebar__window-button--maximize::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid currentColor;
+}
+
+.titlebar--windows .titlebar__window-button--close::before {
+  content: "×";
+  font-size: 16px;
+  height: auto;
+  width: auto;
+}
+
+/* When window is maximized */
+.titlebar--windows.is-maximized .titlebar__window-button--maximize::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid currentColor;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translate(1px, -1px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .titlebar {
+    padding: var(--spacing-sm);
+  }
+  
+  .titlebar__actions {
+    gap: var(--spacing-xs);
+  }
+}
+
+/* Animations */
+@keyframes titlebar-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.titlebar--animated {
+  animation: titlebar-in 0.3s var(--animation-smooth);
+}

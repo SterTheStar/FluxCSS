@@ -1,0 +1,231 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table__header {
+  background: var(--color-bg-tertiary);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table__header-cell {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-bg-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.table__header-cell:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.table__header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.table__sort-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+
+.table__header-cell:hover .table__sort-icon {
+  opacity: 0.5;
+}
+
+.table__header-cell--sorted .table__sort-icon {
+  opacity: 1;
+}
+
+.table__header-cell--sorted-desc .table__sort-icon {
+  transform: rotate(180deg);
+}
+
+.table__row {
+  border-bottom: 1px solid var(--color-bg-tertiary);
+  transition: var(--transition-fast);
+}
+
+.table__row:hover {
+  background: var(--color-bg-tertiary);
+}
+
+.table__cell {
+  padding: var(--spacing-md);
+  color: var(--color-text-secondary);
+}
+
+/* Utilitários de alinhamento */
+.table__cell--right {
+  text-align: right;
+}
+
+.table__cell--center {
+  text-align: center;
+}
+
+/* Filtros */
+.table__filters {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-bg-primary);
+}
+
+.table__filter {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.table__filter-label {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.table__filter-input {
+  background: var(--color-bg-secondary);
+  border: 1px solid transparent;
+  color: var(--color-text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-fast);
+}
+
+.table__filter-input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+/* Estado vazio */
+.table__empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+/* Estado de carregamento */
+.table__row--loading {
+  pointer-events: none;
+}
+
+.table__cell--loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.table__cell--loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Seleção de linhas */
+.table__row--selectable {
+  cursor: pointer;
+}
+
+.table__row--selected {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.table__checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--color-bg-tertiary);
+  background: var(--color-bg-secondary);
+  appearance: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.table__checkbox:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* Ações em lote */
+.table__batch-actions {
+  position: sticky;
+  bottom: 0;
+  background: var(--color-bg-tertiary);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transform: translateY(100%);
+  transition: var(--transition-normal);
+}
+
+.table__batch-actions.is-visible {
+  transform: translateY(0);
+}
+
+.table__selected-count {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .table__header-cell,
+  .table__cell {
+    padding: var(--spacing-sm);
+  }
+  
+  .table--responsive {
+    display: block;
+  }
+  
+  .table--responsive .table__row {
+    display: block;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-bg-tertiary);
+  }
+  
+  .table--responsive .table__cell {
+    display: flex;
+    padding: var(--spacing-xs) 0;
+    border: none;
+  }
+  
+  .table--responsive .table__cell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: var(--spacing-md);
+    min-width: 120px;
+  }
+}

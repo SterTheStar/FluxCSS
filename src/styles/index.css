@@ -1,0 +1,50 @@
+/* Abstracts */
+@import url('abstracts/_variables.css');
+
+/* Base */
+@import url('base/_reset.css');
+
+/* Layout */
+@import url('layout/_layouts.css');
+@import url('layout/_dashboard.css');
+
+/* Components */
+@import url('components/accordions/_accordions.css');
+@import url('components/alerts/_alerts.css');
+@import url('components/avatars/_avatars.css');
+@import url('components/badges/_badges.css');
+@import url('components/breadcrumbs/_breadcrumbs.css');
+@import url('components/buttons/_buttons.css');
+@import url('components/calendar/_calendar.css');
+@import url('components/cards/_cards.css');
+@import url('components/carousel/_carousel.css');
+@import url('components/command-palette/_command-palette.css');
+@import url('components/context-menu/_context-menu.css');
+@import url('components/dialog/_dialog.css');
+@import url('components/dropdowns/_dropdowns.css');
+@import url('components/file-upload/_file-upload.css');
+@import url('components/forms/_forms.css');
+@import url('components/inputs/_inputs.css');
+@import url('components/modals/_modals.css');
+@import url('components/navbar/_navbar.css');
+@import url('components/notifications/_notifications.css');
+@import url('components/pagination/_pagination.css');
+@import url('components/progress/_progress.css');
+@import url('components/ratings/_ratings.css');
+@import url('components/select/_select.css');
+@import url('components/sidebar/_sidebar.css');
+@import url('components/skeletons/_skeletons.css');
+@import url('components/slider/_slider.css');
+@import url('components/spinners/_spinners.css');
+@import url('components/stepper/_stepper.css');
+@import url('components/tables/_tables.css');
+@import url('components/tabs/_tabs.css');
+@import url('components/terminal/_terminal.css');
+@import url('components/titlebar/_titlebar.css');
+@import url('components/toasts/_toasts.css');
+@import url('components/tooltips/_tooltips.css');
+@import url('components/tree/_tree.css');
+@import url('components/timeline/_timeline.css');
+
+/* Utilities */
+@import url('utilities/_utilities.css');

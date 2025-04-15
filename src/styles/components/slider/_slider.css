@@ -1,0 +1,200 @@
+.slider {
+  --thumb-size: 20px;
+  --track-height: 6px;
+  width: 100%;
+  height: var(--thumb-size);
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: var(--spacing-xs) 0;
+}
+
+.slider__input {
+  width: 100%;
+  height: var(--track-height);
+  background: linear-gradient(to right, 
+    var(--color-accent) 0%,
+    var(--color-accent) var(--value-percent, 0%),
+    var(--color-bg-tertiary) var(--value-percent, 0%),
+    var(--color-bg-tertiary) 100%
+  );
+  border-radius: var(--border-radius-full);
+  outline: none;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Thumb */
+.slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  background: var(--color-bg-primary);
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 1;
+}
+
+.slider__input::-moz-range-thumb {
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  background: var(--color-bg-primary);
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover e Focus */
+.slider__input:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+  background: var(--color-accent);
+}
+
+.slider__input:hover::-moz-range-thumb {
+  transform: scale(1.15);
+  background: var(--color-accent);
+}
+
+.slider__input:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.2);
+  background: var(--color-accent);
+}
+
+.slider__input:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.2);
+  background: var(--color-accent);
+}
+
+/* Tooltip de valor */
+.slider__value {
+  position: absolute;
+  top: -32px;
+  left: var(--value-left, 0);
+  transform: translateX(-50%) scale(0.9);
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.slider__value::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+.slider__input:hover + .slider__value,
+.slider__input:focus + .slider__value {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Labels e marcadores */
+.slider__labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.slider__marker {
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: var(--color-bg-tertiary);
+  transform: translateX(-50%);
+  bottom: var(--thumb-size);
+  pointer-events: none;
+}
+
+.slider__marker-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Variantes */
+.slider--sm {
+  --thumb-size: 16px;
+  --track-height: 4px;
+}
+
+.slider--lg {
+  --thumb-size: 24px;
+  --track-height: 8px;
+}
+
+/* Disabled */
+.slider__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.slider__input:disabled::-webkit-slider-thumb {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-bg-tertiary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.slider__input:disabled::-moz-range-thumb {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-bg-tertiary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Range (dois thumbs) */
+.slider--range .slider__input {
+  position: absolute;
+  pointer-events: none;
+  background: none;
+}
+
+.slider--range .slider__input::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+
+.slider--range .slider__input::-moz-range-thumb {
+  pointer-events: auto;
+}
+
+.slider--range .slider__track {
+  position: absolute;
+  width: 100%;
+  height: var(--track-height);
+  background: var(--color-bg-tertiary);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+}
+
+.slider--range .slider__track-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: inherit;
+}

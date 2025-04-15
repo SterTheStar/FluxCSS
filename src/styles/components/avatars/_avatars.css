@@ -1,0 +1,213 @@
+/* Avatar Component */
+.avatar {
+  --avatar-size: 40px;
+  --avatar-font-size: var(--font-size-sm);
+  --avatar-border: 2px;
+  
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--border-radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-size: var(--avatar-font-size);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  border: var(--avatar-border) solid transparent;
+  transition: var(--transition-fast);
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Imagem do Avatar */
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fallback de Iniciais */
+.avatar__initials {
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Indicador de Status */
+.avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  border: 2px solid var(--color-bg-secondary);
+  border-radius: var(--border-radius-full);
+}
+
+.avatar__status--online {
+  background: var(--color-success);
+}
+
+.avatar__status--offline {
+  background: var(--color-text-muted);
+}
+
+.avatar__status--busy {
+  background: var(--color-error);
+}
+
+.avatar__status--away {
+  background: var(--color-warning);
+}
+
+/* Variantes de Tamanho */
+.avatar--xs {
+  --avatar-size: 24px;
+  --avatar-font-size: var(--font-size-xs);
+}
+
+.avatar--sm {
+  --avatar-size: 32px;
+  --avatar-font-size: var(--font-size-xs);
+}
+
+.avatar--md {
+  --avatar-size: 40px;
+  --avatar-font-size: var(--font-size-sm);
+}
+
+.avatar--lg {
+  --avatar-size: 48px;
+  --avatar-font-size: var(--font-size-md);
+}
+
+.avatar--xl {
+  --avatar-size: 64px;
+  --avatar-font-size: var(--font-size-lg);
+}
+
+/* Variantes de Estilo */
+.avatar--rounded {
+  border-radius: var(--border-radius-md);
+}
+
+.avatar--square {
+  border-radius: var(--border-radius-sm);
+}
+
+.avatar--bordered {
+  border-color: var(--color-bg-tertiary);
+}
+
+.avatar--interactive {
+  cursor: pointer;
+}
+
+.avatar--interactive:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Grupo de Avatares */
+.avatar-group {
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.avatar-group .avatar {
+  margin-left: calc(var(--avatar-border) * -2);
+  border: var(--avatar-border) solid var(--color-bg-secondary);
+  transition: transform var(--transition-fast);
+}
+
+.avatar-group .avatar:hover {
+  transform: translateY(-4px);
+  z-index: 1;
+}
+
+/* Profile Chip */
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: var(--border-radius-full);
+  transition: var(--transition-fast);
+}
+
+.profile-chip:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.profile-chip__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-chip__name {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: 1.2;
+}
+
+.profile-chip__info {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.profile-chip__action {
+  margin-left: var(--spacing-xs);
+  color: var(--color-text-muted);
+  transition: var(--transition-fast);
+}
+
+.profile-chip__action:hover {
+  color: var(--color-accent);
+}
+
+/* Variantes do Profile Chip */
+.profile-chip--compact {
+  padding: var(--spacing-xs);
+}
+
+.profile-chip--accent {
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg-secondary));
+  border-color: var(--color-accent);
+}
+
+.profile-chip--glass {
+  background: rgba(var(--color-bg-secondary-rgb), 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* States */
+.profile-chip--selected {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+.profile-chip--selected .profile-chip__info {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .profile-chip__info {
+    display: none;
+  }
+  
+  .profile-chip--responsive {
+    padding: var(--spacing-xs);
+  }
+}
