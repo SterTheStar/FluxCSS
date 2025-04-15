@@ -4,12 +4,21 @@ Um sistema de tema CSS modular e completo com vários componentes e utilitários
 
 ## Índice
 
+- [Instalação](#instalação)
 - [Variáveis Principais](#variáveis-principais)
 - [Componentes](#componentes)
-- [Instalação](#instalação)
 - [Uso](#uso)
 - [Contribuições](#contribuições)
 - [Licença](#licença)
+
+## Instalação
+
+1. Copie o diretório `src/styles` para o seu projeto.
+2. Importe o arquivo CSS principal:
+
+```css
+@import 'caminho/para/src/styles/index.css';
+```
 
 ## Variáveis Principais
 
@@ -149,15 +158,6 @@ Breakpoints responsivos:
 --header-height: 4rem;
 --sidebar-width: 16rem;
 --sidebar-collapsed-width: 4rem;
-```
-
-## Instalação
-
-1. Copie o diretório `src/styles` para o seu projeto.
-2. Importe o arquivo CSS principal:
-
-```css
-@import 'caminho/para/styles/index.css';
 ```
 
 ## Uso
